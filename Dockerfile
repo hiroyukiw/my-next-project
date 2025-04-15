@@ -1,14 +1,20 @@
 # ベースイメージ
 FROM node:20-alpine
 
+# 作業ディレクトリを設定
 WORKDIR /app
 
+# package.json と package-lock.json をコピー
 COPY package*.json ./
+
+# 依存関係をインストール
 RUN npm install
 
+# アプリのソースコードをコピー
 COPY . .
 
-# 本番ビルドしてみる（←重要！）
-RUN npm run build
+# ポート3000を開放
+EXPOSE 3000
 
-# EXPOSEとCMDはあってもなくてもOK（本番サーバーにしないなら）
+# アプリを起動
+CMD ["npm", "run", "dev"]
