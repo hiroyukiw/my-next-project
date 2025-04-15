@@ -4,7 +4,7 @@ import Article from "@/app/_components/Article";
 import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
 
-type NewsPageProps = {
+type NewsDetailPageProps = {
   params: {
     slug: string;
   };
@@ -14,7 +14,10 @@ type NewsPageProps = {
 };
 
 // test
-export default async function Page({ params, searchParams }: NewsPageProps) {
+export default async function Page({
+  params,
+  searchParams,
+}: NewsDetailPageProps) {
   const data = await getNewsDetail(params.slug, {
     draftKey: searchParams.dk,
   }).catch(notFound);
