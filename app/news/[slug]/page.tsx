@@ -8,7 +8,7 @@ type Props = {
   params: {
     slug: string;
   };
-  searchParams: {
+  searchParams?: {
     dk?: string;
   };
 };
@@ -16,7 +16,7 @@ type Props = {
 // test
 export default async function Page({ params, searchParams }: Props) {
   const data = await getNewsDetail(params.slug, {
-    draftKey: searchParams.dk,
+    draftKey: searchParams?.dk,
   }).catch(notFound);
   return (
     <>
@@ -26,4 +26,9 @@ export default async function Page({ params, searchParams }: Props) {
       </div>
     </>
   );
+}
+
+// これがないと Vercel で型エラーになる！
+export async function generateStaticParams() {
+  return [];
 }
