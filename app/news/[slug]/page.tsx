@@ -1,3 +1,4 @@
+import { getNewsList } from "@/app/_libs/microcms";
 import { notFound } from "next/navigation";
 import { getNewsDetail } from "@/app/_libs/microcms";
 import Article from "@/app/_components/Article";
@@ -5,12 +6,19 @@ import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
 
 interface PageProps {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
   searchParams?: {
     dk?: string;
   };
+}
+
+export async function generateStaticParams() {
+  const data = await getNewsList(); // 例：全ニュース記事取得
+  return data.contents.map((item) => ({
+    slug: item.id,
+  }));
 }
 
 // test
