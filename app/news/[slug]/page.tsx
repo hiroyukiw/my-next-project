@@ -33,8 +33,3 @@ export default async function Page({
     </>
   );
 }
-
-// ISR/staticに必要（使ってなくても必要）
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  return [];
-}
