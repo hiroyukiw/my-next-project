@@ -26,3 +26,8 @@ export default async function Page({ params, searchParams }: Props) {
     </>
   );
 }
+
+// ISR/staticに必要（使ってなくても必要）
+export async function generateStaticParams() {
+  return [] as { slug: string }[];
+}
