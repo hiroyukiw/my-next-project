@@ -28,7 +28,7 @@ export default async function Page({ params, searchParams }: Props) {
   );
 }
 
-// これがないと Vercel で型エラーになる！
-export async function generateStaticParams() {
+// 型をしっかりつける！
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   return [];
 }
