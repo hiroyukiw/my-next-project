@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./index.module.css";
 import { Suspense } from "react";
-import { Sign } from "crypto";
 
 function SearchFieldComponent() {
   const router = useRouter();
