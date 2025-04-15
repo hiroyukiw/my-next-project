@@ -5,9 +5,9 @@ import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
   searchParams?: {
     dk?: string;
   };
