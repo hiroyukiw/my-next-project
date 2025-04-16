@@ -27,3 +27,7 @@ export default async function Page({ params, searchParams }: Props) {
     </>
   );
 }
+
+export async function generateStaticParams() {
+  return [] as Array<{ slug: string }>;
+}
