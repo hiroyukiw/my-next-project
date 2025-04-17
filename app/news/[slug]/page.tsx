@@ -4,8 +4,7 @@ import Article from "@/app/_components/Article";
 import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
 
-// Next.js 15.2.3に合わせた型定義
-type NewsPageProps = {
+type Props = {
   params: {
     slug: string;
   };
@@ -14,17 +13,10 @@ type NewsPageProps = {
   };
 };
 
-export default async function Page({ params, searchParams }: NewsPageProps) {
-  // エラーハンドリングを強化
-  if (!params.slug) {
-    return notFound();
-  }
-
+export default async function Page({ params, searchParams }: Props) {
   const data = await getNewsDetail(params.slug, {
     draftKey: searchParams.dk,
-  }).catch(() => {
-    return notFound();
-  });
+  }).catch(notFound);
 
   return (
     <>
@@ -36,8 +28,6 @@ export default async function Page({ params, searchParams }: NewsPageProps) {
   );
 }
 
-// Next.js 15.2.3での推奨される書き方
-export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
-  // 実際の実装ではここでスラッグのリストを返す
-  return [];
+export async function generateStaticParams() {
+  return [] as Array<{ slug: string }>;
 }
