@@ -1,11 +1,20 @@
 "use server";
 
+// 状態の型を定義
+type ContactFormState = {
+  status?: "success" | "error";
+  message?: string;
+};
+
 function validateEmail(email: string) {
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return pattern.test(email);
 }
 
-export async function createContactData(_prevState: any, formData: FormData) {
+export async function createContactData(
+  _prevState: ContactFormState, // any型を具体的な型に置き換え
+  formData: FormData
+): Promise<ContactFormState> {
   // formのname属性ごとにformData.get()で値を取り出すことができる
   const rawFormData = {
     lastname: formData.get("lastname") as string,
